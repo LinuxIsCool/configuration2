@@ -16,6 +16,10 @@ function fish_prompt
   set -l green (set_color -o green)
   set -l normal (set_color normal)
 
+  if set -q VIRTUAL_ENV
+    echo -n -s (set_color white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+  end
+
   set -l cwd (pwd | sed -e "s!^$HOME!~!g")
   # output the prompt, left to right:
   if [ (id -u) = "0" ];
